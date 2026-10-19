@@ -17,11 +17,7 @@ Control it from any phone: the ESP32 creates its own WiFi network and serves a c
 ## Hardware
 - ESP32, 5 servos (fingers), stepper motor with ULN2003 driver (wrist), (power supply, hand body)
 
-## Files
-- `robot-hand-sign.ino` - firmware
 
-## My role
-(ghi rõ bạn làm phần nào nếu là project nhóm)
 
 
 
