@@ -94,7 +94,7 @@ Gesture gestures[] = {
   { "S", 150, 150, 150, 150, 150, 60 },
   { "T", 90, 90, 90, 150, 150, 90 },
   { "U", 150, 0, 0, 150, 150, 90 },
-  { "R", 150, 0, 30, 150, 150, 60 },
+  { "V", 150, 0, 30, 150, 150, 60 },
   { "W", 150, 0, 0, 0, 150, 90 },
   { "X", 150, 0, 150, 150, 150, 90 },
   { "Y", 0, 150, 150, 150, 0, 90 },
@@ -181,6 +181,7 @@ void moveGesture(int g) {
   for (int i = 0; i < 5; i++) {
     int realAngle = mapServoAngle(rawAngles[i], servoMin[i], servoMax[i]);
     servos[i].write(realAngle);
+    currentServoAngle[i] = realAngle;
     Serial.printf("Servo %d => %d° (mapped)\n", i, realAngle);
     delay(100);
   }
@@ -195,6 +196,7 @@ void playGesture(GestureSequence g) {
     for (int i = 0; i < 5; i++) {
       int realAngle = mapServoAngle(rawAngles[i], servoMin[i], servoMax[i]);
       servos[i].write(realAngle);
+      currentServoAngle[i] = realAngle;
       Serial.printf("Servo %d => %d° (mapped)\n", i, realAngle);
       delay(100);
     }
@@ -299,7 +301,7 @@ void setup() {
   pinMode(IN4, OUTPUT);
   rotateTo(currentAngle);
   // Start WiFi AP
-  WiFi.softAP("ESP32-HandSign-AP");
+  WiFi.softAP("ESP32-HandSign-AP", "Pa@12345678");
   IPAddress IP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(IP);
@@ -343,6 +345,6 @@ void loop() {
       currentServoAngle[servoIndex] = angle;
     }
 
-    delay(3000);
+    ;
   }
 }
